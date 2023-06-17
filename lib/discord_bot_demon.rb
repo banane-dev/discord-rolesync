@@ -145,9 +145,9 @@ class Demon::DiscordBot < ::Demon::Base
     bot_not_ready!
 
     while @running
-      start_discord_bot if  SiteSetting.discord_rolesync_bot_on
+      start_discord_bot if SiteSetting.discord_rolesync_bot_on
       stop_discord_bot unless SiteSetting.discord_rolesync_bot_on
-      sync_discord_roles unless sync_command.nil?
+      sync_discord_roles if SiteSetting.discord_rolesync_bot_on
       sleep 1
     end
 
